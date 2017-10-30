@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"Agenda/model"
 )
 
 //check if the username has been registered
@@ -177,6 +178,7 @@ func logout_readfile(name, password string) {
 		}
 	}
 }
+
 func logout_clearfile() {
 	fout, err := os.OpenFile("data/user_login", os.O_WRONLY|os.O_TRUNC, 0600)
 	if err != nil {
@@ -187,3 +189,83 @@ func logout_clearfile() {
 		fmt.Println("log out success!")
 	}
 }
+
+func able_to_createMeeting(name string, title string, participators []string, startDate string, endDate string) bool {
+    var s_date model.Date
+    var e_date model.Date
+    s_date = model.StringToDate(startDate)
+    e_date = model.StringToDate(endDate)
+
+    if ((!s_date.IsValid()) || (!e_date.IsValid())) {
+        //fmt.Println(startDate)
+				//fmt.Println(endDate)
+				fmt.Println("Sorry,the date is invalid!")
+        return false
+    }
+
+    if (s_date.NotLessThan(e_date)) {
+        fmt.Println("Sorry,the startDate can't more than the endDate!")
+        return false
+    }
+
+    // don't need queryuser to check whether the sponsor is log in
+
+    for _, people := range participators {
+        if check_user(people) == false {
+            fmt.Println("Sorry,there exist participator(s) not register!")
+            return false
+        }
+    }
+
+    for i := 0; i < len(participators); i++ {
+        for j := i + 1; j < len(participators); j++ {
+            if (participators[i] == participators[j]) {
+                fmt.Println("Sorry,the participator can't be the same!")
+                return false
+            }
+        }
+    }
+
+    for _, p := range participators {
+        if (name == p) {
+            fmt.Println("Sorry,the sponsor can't be the participator!")
+            return false
+        }
+    }
+
+    if (len(participators) == 0) {
+        fmt.Println("Sorry,there must be at least one participator!")
+        return false
+    }
+
+    return true
+}
+
+func Create_meeting(title string, participators []string, startDate string, endDate string) {
+	if able_to_login() == true {
+		fmt.Println("Sorry, please log in")
+		} else {
+			fin, _ := os.Open("data/user_login")
+			buff := bufio.NewReader(fin)
+			CurrentUser, _ := buff.ReadString('\n')
+			CurrentUser = strings.Replace(CurrentUser, "\n", "", -1) //get current user
+
+			if able_to_createMeeting(CurrentUser, title, participators, startDate, endDate) {
+				fout, err := os.OpenFile("data/account_meeting", os.O_WRONLY|os.O_APPEND, 0666)
+				if err != nil {
+					panic(err)
+					fmt.Println("Sorry, can't open the account_meeting file, the opration 'createMeeting' failed!\n")
+				} else {
+					io.WriteString(fout, CurrentUser+"\n")
+					io.WriteString(fout, title+"\n")
+					for _, people := range participators {
+						  io.WriteString(fout, people+" ")
+					}
+					io.WriteString(fout, "\n")
+					io.WriteString(fout, startDate+"\n")
+					io.WriteString(fout, endDate+"\n")
+					fmt.Println("Create meeting successfully")
+				}
+			}
+		}
+	}

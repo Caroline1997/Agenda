@@ -1,4 +1,4 @@
-// package
+package model
 
 type Meeting struct {
     Sponsor string
