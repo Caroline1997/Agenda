@@ -15,13 +15,9 @@
 package cmd
 
 import (
+	"Agenda/ops"
+
 	"github.com/spf13/cobra"
-	"io"
-	"bufio"
-	"fmt"
-	//"io/ioutil"
-	"os"
-	"strings"
 )
 
 // registerCmd represents the register command
@@ -31,13 +27,31 @@ var registerCmd = &cobra.Command{
 	Long:  `usage of using this command is to register a new account`,
 	Run: func(cmd *cobra.Command, args []string) {
 		username, _ := cmd.Flags().GetString("user")
-		create_acount(username)
+		password, _ := cmd.Flags().GetString("password")
+		mail, _ := cmd.Flags().GetString("mail")
+		phone, _ := cmd.Flags().GetString("phone")
+		ops.Create_acount(username, password, mail, phone)
 	},
 }
 
+/*var loginCmd = &cobra.Command{
+	Use:   "login",
+	Short: "login",
+	Long:  `usage of using this command is to login`,
+	Run: func(cmd *cobra.Command, args []string) {
+		name,_:=cmd.Flags().GetString("name")
+
+		fmt.Println(name)
+	},
+}*/
 func init() {
 	RootCmd.AddCommand(registerCmd)
-	registerCmd.Flags().StringP("user", "u", "Anonymous", "Help message for username")
+	//RootCmd.AddCommand(loginCmd)
+	registerCmd.Flags().StringP("user", "u", "default_name", "Username")
+	registerCmd.Flags().StringP("password", "p", "default_password", "Password")
+	registerCmd.Flags().StringP("mail", "m", "default_mail", "email_address")
+	registerCmd.Flags().StringP("phone", "n", "default_phonenumber", "phone_number")
+	//loginCmd.Flags().StringP("name","n","","name")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
@@ -47,53 +61,4 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// registerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-func create_acount(usrname string) {	
-	//read from document 'account'
-	fin,err := os.Open("data/account")
-	if err != nil{
-		panic(err)
-	}
-	buff := bufio.NewReader(fin)
-	//check if the name has been registered
-	flag := true
-	for true {
-		//read the first line of id
-		info, e := buff.ReadString('\n')
-		if e != nil{
-			//end of the account		
-			break
-		}
-		info = strings.Replace(info,"\n","", -1) //delete \n from the string
-		//if the id alredy exist		
-		if info == usrname{
-			fmt.Println("Sorry, the id has been registered, please try another id :)")
-			flag = false
-			break		
-		}
-		//skip two lines of email and mobilephone number
-		info, e1 := buff.ReadString('\n')
-		if e1 != nil{		
-			break
-		}
-		info, e2 := buff.ReadString('\n')
-		if e2 != nil{		
-			break
-		}
-	}
-	if flag{
-		fout, err := os.OpenFile("data/account", os.O_WRONLY|os.O_APPEND, 0666)
-		if err!= nil {
-			panic(err)
-			fmt.Println("Sorry, the opration 'register' failed!\n")
-		}else{
-			var email, number string
-			fmt.Println("Please write down your email-address and your mobile number:")
-			fmt.Scanln(&email, &number)
-			io.WriteString(fout, usrname+"\n")			
-			io.WriteString(fout, email+"\n")
-			io.WriteString(fout, number + "\n")
-			fmt.Println("register success!thanks for your cooperation!")
-		}
-	}
 }
