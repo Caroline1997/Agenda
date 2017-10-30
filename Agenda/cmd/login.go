@@ -35,8 +35,8 @@ var loginCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(loginCmd)
-	loginCmd.Flags().StringP("name","n","","user_name")
-	loginCmd.Flags().StringP("password", "p", "", "password")
+	loginCmd.Flags().StringP("name","n","default_name","user_name")
+	loginCmd.Flags().StringP("password", "p", "default_password", "password")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
