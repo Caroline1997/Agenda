@@ -20,7 +20,7 @@ import (
 )
 
 var createMeetingCmd = &cobra.Command{
-    Use:   "createMeeting -t [Title] -p [Participator] -s [StartTime] -e [EndTime]",
+    Use:   "createMeeting -t [Title] -p [Participator] -s [StartDate] -e [EndDate]",
     Short: "create a new meeting",
     Long: `usage of using this command is to create a new meeting`,
     Run: func(cmd *cobra.Command, args []string) {
