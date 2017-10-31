@@ -117,17 +117,15 @@ func StringToInt(s string) int {
 }
 
 func StringToDate(t_dateString string) Date {
-    var temp string
     var t Date
     var isValid bool = true
-    temp = t_dateString
-    if temp[4] != '-' || temp[7] != '-' || temp[10] != '/' || temp[13] != ':' {
+    if t_dateString[4] != '-' || t_dateString[7] != '-' || t_dateString[10] != '/' || t_dateString[13] != ':' || len(t_dateString) != 16 {
         isValid = false
     }
-    if temp[0] > '9' || temp[0] < '0' || temp[1] > '9' || temp[1] < '0' || temp[2] > '9' || temp[2] < '0' ||
-       temp[3] > '9' || temp[3] < '0' || temp[5] > '9' || temp[5] < '0' || temp[6] > '9' || temp[6] < '0' ||
-       temp[8] > '9' || temp[8] < '0' || temp[9] > '9' || temp[9] < '0' || temp[11] > '9' || temp [11] < '0' ||
-       temp[12] > '9' || temp[12] < '0' || temp[14] > '9' || temp[14] < '0' || temp[15] > '9' || temp[15] < '0' {
+    if t_dateString[0] > '9' || t_dateString[0] < '0' || t_dateString[1] > '9' || t_dateString[1] < '0' || t_dateString[2] > '9' || t_dateString[2] < '0' ||
+       t_dateString[3] > '9' || t_dateString[3] < '0' || t_dateString[5] > '9' || t_dateString[5] < '0' || t_dateString[6] > '9' || t_dateString[6] < '0' ||
+       t_dateString[8] > '9' ||t_dateString[8] < '0' || t_dateString[9] > '9' || t_dateString[9] < '0' || t_dateString[11] > '9' || t_dateString[11] < '0' ||
+       t_dateString[12] > '9' || t_dateString[12] < '0' || t_dateString[14] > '9' || t_dateString[14] < '0' || t_dateString[15] > '9' || t_dateString[15] < '0' {
         isValid = false
     }
     if isValid == false {
@@ -138,11 +136,11 @@ func StringToDate(t_dateString string) Date {
         t.Minute = 0
         return t
     } else if isValid == true {
-      t.setYear(StringToInt(temp[0:4]))
-      t.setMonth(StringToInt(temp[5:7]))
-      t.setDay(StringToInt(temp[8:10]))
-      t.setHour(StringToInt(temp[11:13]))
-      t.setMinute(StringToInt(temp[14:16]))
+      t.setYear(StringToInt(t_dateString[0:4]))
+      t.setMonth(StringToInt(t_dateString[5:7]))
+      t.setDay(StringToInt(t_dateString[8:10]))
+      t.setHour(StringToInt(t_dateString[11:13]))
+      t.setMinute(StringToInt(t_dateString[14:16]))
       return t
     }
     return t
@@ -201,7 +199,7 @@ func (date *Date) IsEqual(t_date Date) bool {
     }
 }
 
-func (date *Date) IsMoreThan(t_date Date) bool {
+func (date Date) IsMoreThan(t_date Date) bool {
     if date.Year > t_date.Year {
         return true
     } else if date.Year < t_date.Year {
@@ -217,7 +215,7 @@ func (date *Date) IsMoreThan(t_date Date) bool {
             } else if date.Day < t_date.Day {
                 return false
             } else {
-                if date.Hour > t_date.Day {
+                if date.Hour > t_date.Hour {
                     return true
                 } else if date.Hour < t_date.Hour {
                     return false
@@ -233,7 +231,7 @@ func (date *Date) IsMoreThan(t_date Date) bool {
     }
 }
 
-func (date *Date) IsLessThan(t_date Date) bool {
+func (date Date) IsLessThan(t_date Date) bool {
     if date.Year < t_date.Year {
         return true
     } else if date.Year > t_date.Year {
@@ -249,7 +247,7 @@ func (date *Date) IsLessThan(t_date Date) bool {
             } else if date.Day > t_date.Day {
                 return false
             } else {
-                if date.Hour < t_date.Day {
+                if date.Hour < t_date.Hour {
                     return true
                 } else if date.Hour > t_date.Hour {
                     return false
@@ -265,7 +263,7 @@ func (date *Date) IsLessThan(t_date Date) bool {
     }
 }
 
-func (date *Date) NotLessThan(t_date Date) bool {
+func (date Date) NotLessThan(t_date Date) bool {
     if date.Year > t_date.Year {
         return true
     } else if date.Year < t_date.Year {
@@ -281,7 +279,7 @@ func (date *Date) NotLessThan(t_date Date) bool {
             } else if date.Day < t_date.Day {
                 return false
             } else {
-                if date.Hour > t_date.Day {
+                if date.Hour > t_date.Hour {
                     return true
                 } else if date.Hour < t_date.Hour {
                     return false
@@ -297,7 +295,7 @@ func (date *Date) NotLessThan(t_date Date) bool {
     }
 }
 
-func (date *Date) NotMoreThan(t_date Date) bool {
+func (date Date) NotMoreThan(t_date Date) bool {
     if date.Year < t_date.Year {
         return true
     } else if date.Year > t_date.Year {
@@ -313,7 +311,7 @@ func (date *Date) NotMoreThan(t_date Date) bool {
             } else if date.Day > t_date.Day {
                 return false
             } else {
-                if date.Hour < t_date.Day {
+                if date.Hour < t_date.Hour {
                     return true
                 } else if date.Hour > t_date.Hour {
                     return false

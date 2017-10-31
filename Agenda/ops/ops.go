@@ -92,6 +92,52 @@ func check_user_password(name string, password string) bool {
 	}
 	return flag
 }
+
+func meeting_title_exist(title string) bool {
+	  fin, err := os.Open("data/account_meeting")
+	  if err != nil {
+		    panic(err)
+	  }
+	  buff := bufio.NewReader(fin)
+	  flag := false
+	  for true {
+		    info, e := buff.ReadString('\n')
+		    if e != nil {
+			      break
+		    }
+			  info, ee := buff.ReadString('\n')
+			  if ee != nil {
+				    break
+			  }
+			  info = strings.Replace(info, "\n", "", -1)
+			  if info == title {
+				    return true
+			  }
+		    //skip 5 lines
+		    info, e1 := buff.ReadString('\n')
+		    if e1 != nil {
+			      break
+		    }
+		    info, e2 := buff.ReadString('\n')
+		    if e2 != nil {
+			      break
+		    }
+		    info, e3 := buff.ReadString('\n')
+		    if e3 != nil {
+			      break
+		    }
+				info, e4 := buff.ReadString('\n')
+		    if e4 != nil {
+			      break
+		    }
+				info, e5 := buff.ReadString('\n')
+		    if e5 != nil {
+			      break
+		    }
+	}
+	return flag
+}
+
 func Create_acount(usrname string, password string, mail string, phone string) {
 	//flag = true if usrname has not been used
 	flag := check_user(usrname)
@@ -210,12 +256,10 @@ func able_to_createMeeting(name string, title string, participators []string, st
 
     // don't need queryuser to check whether the sponsor is log in
 
-    for _, people := range participators {
-        if check_user(people) == false {
-            fmt.Println("Sorry,there exist participator(s) not register!")
-            return false
-        }
-    }
+		if (meeting_title_exist(title)) {
+			  fmt.Println("Sorry,the meeting title is exist!")
+				return false
+		}
 
     for i := 0; i < len(participators); i++ {
         for j := i + 1; j < len(participators); j++ {
@@ -269,3 +313,152 @@ func Create_meeting(title string, participators []string, startDate string, endD
 			}
 		}
 	}
+
+func Query_meeting(startDate string, endDate string) {
+    var tmp int = 1
+		var s2 model.Date
+		var end2 model.Date
+		s2 = model.StringToDate(startDate)
+		end2 = model.StringToDate(endDate)
+		if able_to_login() == true {
+		    fmt.Println("Sorry, please log in")
+		} else {
+			  fin1, _ := os.Open("data/user_login")
+			  buff1 := bufio.NewReader(fin1)
+			  CurrentUser, _ := buff1.ReadString('\n')
+			  CurrentUser = strings.Replace(CurrentUser, "\n", "", -1) //get current user
+
+        fin, err := os.Open("data/account_meeting")
+				if err != nil {
+					  panic(err)
+				}
+				buff := bufio.NewReader(fin)
+				fmt.Println("Sponsor Title Participators StartDate EndDate")
+				for true {
+					    sponsor, e1 := buff.ReadString('\n')
+							if e1 != nil {
+								  break
+							}
+							sponsor = strings.Replace(sponsor, "\n", "", -1)
+              // find current user's meeting account
+							if sponsor == CurrentUser {
+                  // memory title
+									title, e2 := buff.ReadString('\n')
+									if e2 != nil {
+										  break
+									}
+									title = strings.Replace(title, "\n", "", -1)
+                  // get all participators (don't need to check one by one)
+									participators, e3 := buff.ReadString('\n')
+									if e3 != nil {
+										  break
+									}
+									participators = strings.Replace(participators, "\n", "", -1)
+
+									// get start date
+									s_date, e4 := buff.ReadString('\n')
+									if e4 != nil {
+										  break
+									}
+									s_date = strings.Replace(s_date, "\n", "", -1)
+									var s1 model.Date
+							    //var s2 model.Date
+							    s1 = model.StringToDate(s_date)
+							   // s2 = model.StringToDate(startDate)
+									if s1.IsLessThan(s2) == true {
+                      tmp = 0
+									}
+
+									// get end date
+									e_date, e5 := buff.ReadString('\n')
+									if e5 != nil {
+										  break
+									}
+									e_date = strings.Replace(e_date, "\n", "", -1)
+
+									var end1 model.Date
+							    //var end2 model.Date
+							    end1 = model.StringToDate(e_date)
+							    //end2 = model.StringToDate(endDate)
+									//fmt.Println(end1.Year, end1.Month, end1.Day, end1.Hour, end1.Minute)
+									//fmt.Println(end2.Year, end2.Month, end2.Day, end2.Hour, end2.Minute)
+
+									if end1.IsMoreThan(end2) == true {
+                      tmp = 0
+									}
+                  if tmp != 0 {
+										  fmt.Println(sponsor, title, participators, s_date, e_date)
+									}
+							}
+				}
+				fin2, err2 := os.Open("data/account_meeting")
+				if err2 != nil {
+						panic(err2)
+				}
+				buff2 := bufio.NewReader(fin2)
+				for true {
+              // memory sponsor
+							sponsor1, e1 := buff2.ReadString('\n')
+							if e1 != nil {
+									break
+							}
+							sponsor1 = strings.Replace(sponsor1, "\n", "", -1)
+							// memory title
+							title1, e2 := buff2.ReadString('\n')
+							if e2 != nil {
+									break
+							}
+							title1 = strings.Replace(title1, "\n", "", -1)
+							// get all participators (need to check if current user in them)
+							participators1, e3 := buff2.ReadString('\n')
+							if e3 != nil {
+									break
+							}
+							participators1 = strings.Replace(participators1, "\n", "", -1)
+              tt := strings.Contains(participators1, CurrentUser)
+							//fmt.Println(strings.Contains(participators1, CurrentUser))
+
+								  // get start date
+								  s_date1, e4 := buff2.ReadString('\n')
+								  if e4 != nil {
+										  break
+								  }
+								  s_date1 = strings.Replace(s_date1, "\n", "", -1)
+
+									var s11 model.Date
+								  var s21 model.Date
+								  s11 = model.StringToDate(s_date1)
+								  s21 = model.StringToDate(startDate)
+								  if s11.IsLessThan(s21) == true {
+										  tmp = 0
+										  //fmt.Println("in s")
+										  //break
+								  }
+                  // get end date
+								  e_date1, e5 := buff2.ReadString('\n')
+								  if e5 != nil {
+										  break
+								  }
+								  e_date1 = strings.Replace(e_date1, "\n", "", -1)
+
+								  var end1 model.Date
+								  var end2 model.Date
+								  end1 = model.StringToDate(e_date1)
+								  end2 = model.StringToDate(endDate)
+
+								  if end1.IsMoreThan(end2) == true {
+										  tmp = 0
+										  fmt.Println("in e")
+										  break
+								  }
+
+								  if tmp != 0 && tt == true {
+										  fmt.Println(sponsor1, title1, participators1, s_date1, e_date1)
+								  }
+
+				}
+				if tmp == 0 {
+					  fmt.Println("Sorry,there don't have any meeting account!")
+				}
+		}
+}
