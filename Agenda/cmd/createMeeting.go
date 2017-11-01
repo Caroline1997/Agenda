@@ -17,6 +17,8 @@ package cmd
 import (
     "github.com/spf13/cobra"
     "Agenda/ops"
+    "log"
+    "os"
 )
 
 var createMeetingCmd = &cobra.Command{
@@ -24,10 +26,19 @@ var createMeetingCmd = &cobra.Command{
     Short: "create a new meeting",
     Long: `usage of using this command is to create a new meeting`,
     Run: func(cmd *cobra.Command, args []string) {
+        file,err := os.OpenFile("testquery.log",os.O_WRONLY|os.O_APPEND, 0666)
+  		  if err != nil {
+  			     log.Fatalln("Fail to create testquery.log file!")
+  		  }
+  		  querylog := log.New(file,"",log.LstdFlags|log.Llongfile)
         title, _ := cmd.Flags().GetString("Title")
+        querylog.Println("[createMeeting] 1.Get the meeting's title.")
         participators, _ := cmd.Flags().GetStringSlice("Participators")
+        querylog.Println("[createMeeting] 2.Get the meeting's participators.")
         startDate, _ := cmd.Flags().GetString("StartDate")
+        querylog.Println("[createMeeting] 3.Get the meeting's startDate.")
         endDate, _ := cmd.Flags().GetString("EndDate")
+        querylog.Println("[createMeeting] 4.Get the meeting's endDate.")
         ops.Create_meeting(title, participators, startDate, endDate)
     },
 }

@@ -15,46 +15,57 @@
 package cmd
 
 import (
+	"fmt"
 	"Agenda/ops"
-
 	"github.com/spf13/cobra"
-	"os"
 	"log"
+	"os"
+	//"io"
 )
 
-// logoutCmd represents the logout command
-var logoutCmd = &cobra.Command{
-	Use:   "logout",
-	Short: "logout current user",
-	Long:  `the usage of the command is to log out current user`,
+// loginCmd represents the login command
+var queryCmd = &cobra.Command{
+	Use:   "query",
+	Short: "for user to query",
+	Long: `the usage is to query`,
 	Run: func(cmd *cobra.Command, args []string) {
+		//fmt.Println("login called")
 		file,err := os.OpenFile("testquery.log",os.O_WRONLY|os.O_APPEND, 0666)
 		if err != nil {
 			log.Fatalln("Fail to create testquery.log file!")
 		}
 		querylog := log.New(file,"",log.LstdFlags|log.Llongfile)
 		name, _ := cmd.Flags().GetString("name")
-		querylog.Printf("[logout] 1.get the account's name: "+name+"\n")
+		querylog.Printf("[query] 1.get the account's name: "+name+"\n")
+		//io.WriteString(file"[query] 1.get the account's name: "+name+"\n")
 		password, _ := cmd.Flags().GetString("password")
-		querylog.Printf("[logout] 2.get the account's password: "+password+"\n")
-		//var logtoout ops.Logtoout
-		//logtoout = ops.GetLogtoout()
-		ops.Logout(name, password)
-		//querylog.Println(logtoout)
+		querylog.Printf("[query] 1.get the account's password: "+password+"\n")
+		//io.WriteString(file,"[query] 2.get the account's password: "+password+"\n")
+		flag :=ops.Query_user(name,password)
+		if flag==true {
+			fmt.Println("Query success!")
+			querylog.Printf("[query] 3.get the account's name:Query success! \n")
+			//io.WriteString(file,"[query] 3.get the account's name:Query success! \n")
+		} else {
+		  querylog.Printf("[query] 4.sorry,you should login!\n")
+			//io.WriteString(file,"[query] 4.sorry,you should login!")
+			fmt.Println("sorry,you should login!")
+			file.Close()
+	}
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(logoutCmd)
-	logoutCmd.Flags().StringP("name", "n", "default_name", "logout username")
-	logoutCmd.Flags().StringP("password", "p", "default_password", "password")
+	RootCmd.AddCommand(queryCmd)
+	queryCmd.Flags().StringP("name","n","default_name","user_name")
+	queryCmd.Flags().StringP("password", "p", "default_password", "password")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// logoutCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// loginCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// logoutCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// loginCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

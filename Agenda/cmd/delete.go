@@ -15,46 +15,52 @@
 package cmd
 
 import (
+	"fmt"
 	"Agenda/ops"
-
 	"github.com/spf13/cobra"
 	"os"
 	"log"
 )
 
-// logoutCmd represents the logout command
-var logoutCmd = &cobra.Command{
-	Use:   "logout",
-	Short: "logout current user",
-	Long:  `the usage of the command is to log out current user`,
+// loginCmd represents the login command
+var deleteCmd = &cobra.Command{
+	Use:   "delete user",
+	Short: "for user to delete the account",
+	Long: `the usage is to delete his own acccount`,
 	Run: func(cmd *cobra.Command, args []string) {
 		file,err := os.OpenFile("testquery.log",os.O_WRONLY|os.O_APPEND, 0666)
 		if err != nil {
 			log.Fatalln("Fail to create testquery.log file!")
 		}
 		querylog := log.New(file,"",log.LstdFlags|log.Llongfile)
+		//fmt.Println("login called")
 		name, _ := cmd.Flags().GetString("name")
-		querylog.Printf("[logout] 1.get the account's name: "+name+"\n")
+		querylog.Printf("[delete] 1.get the account's name: "+name+"\n")
 		password, _ := cmd.Flags().GetString("password")
-		querylog.Printf("[logout] 2.get the account's password: "+password+"\n")
-		//var logtoout ops.Logtoout
-		//logtoout = ops.GetLogtoout()
-		ops.Logout(name, password)
-		//querylog.Println(logtoout)
+		querylog.Printf("[delete] 2.get the account's password: "+password+"\n")
+		flag := ops.Delete_user(name, password)
+		//var del ops.Delete
+		//del = ops.GetDelete()
+		if flag==false {
+			fmt.Println("Delete failed!")
+			del := "[delete] 14.Delete user failed!"
+			querylog.Println(del)
+		}
+
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(logoutCmd)
-	logoutCmd.Flags().StringP("name", "n", "default_name", "logout username")
-	logoutCmd.Flags().StringP("password", "p", "default_password", "password")
+	RootCmd.AddCommand(deleteCmd)
+	deleteCmd.Flags().StringP("name","n","default_name","user_name")
+	deleteCmd.Flags().StringP("password", "p", "default_password", "password")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// logoutCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// loginCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// logoutCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// loginCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
