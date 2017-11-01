@@ -17,6 +17,8 @@ package cmd
 import (
     "Agenda/ops"
     "github.com/spf13/cobra"
+    "log"
+    "os"
 )
 
 // queryMeetingCmd represents the queryMeeting command
@@ -25,8 +27,15 @@ var queryMeetingCmd = &cobra.Command{
     Short: "To query the meeting during [StartDate] and [EndDate]",
     Long: `usage of using this command is to query the meeting during [StartDate] and [EndDate]`,
     Run: func(cmd *cobra.Command, args []string) {
+        file,err := os.OpenFile("testquery.log",os.O_WRONLY|os.O_APPEND, 0666)
+        if err != nil {
+             log.Fatalln("Fail to create testquery.log file!")
+        }
+        querylog := log.New(file,"",log.LstdFlags|log.Llongfile)
         startDate, _ := cmd.Flags().GetString("StartDate")
+        querylog.Printf("[queryMeeting] 1.Get the meeting's StartDate.\n")
         endDate, _ := cmd.Flags().GetString("EndDate")
+        querylog.Printf("[queryMeeting] 2.Get the meeting's EndDate.\n")
         ops.Query_meeting(startDate, endDate)
     },
 }

@@ -14,34 +14,34 @@ func (user *User) userInit(t_name string, t_password string, t_email string, t_p
     user.Phone = t_phone
 }
 
-func (user User) getName() string {
+func (user User) GetName() string {
     return user.Name
 }
 
-func (user *User) setName(t_name string) {
+func (user *User) SetName(t_name string) {
     user.Name = t_name
 }
 
-func (user User) getPassword() string {
+func (user User) GetPassword() string {
     return user.Password
 }
 
-func (user *User) setPassword(t_password string) {
+func (user *User) SetPassword(t_password string) {
     user.Password = t_password
 }
 
-func (user User) getEmail() string {
+func (user User) GetEmail() string {
     return user.Email
 }
 
-func (user *User) setEmail(t_email string) {
+func (user *User) SetEmail(t_email string) {
     user.Email = t_email
 }
 
-func (user User) getPhone() string {
+func (user User) GetPhone() string {
     return user.Phone
 }
 
-func (user *User) setPhone(t_phone string) {
+func (user *User) SetPhone(t_phone string) {
     user.Phone = t_phone
 }

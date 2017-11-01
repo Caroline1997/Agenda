@@ -18,6 +18,8 @@ import (
 	//"fmt"
 	"Agenda/ops"
 	"github.com/spf13/cobra"
+	"os"
+	"log"
 )
 
 // loginCmd represents the login command
@@ -27,9 +29,19 @@ var loginCmd = &cobra.Command{
 	Long: `the usage is to log in`,
 	Run: func(cmd *cobra.Command, args []string) {
 		//fmt.Println("login called")
+		file,err := os.OpenFile("testquery.log",os.O_WRONLY|os.O_APPEND, 0666)
+		if err != nil {
+			log.Fatalln("Fail to create testquery.log file!")
+		}
+		querylog := log.New(file,"",log.LstdFlags|log.Llongfile)
 		name, _ := cmd.Flags().GetString("name")
-		password, _ := cmd.Flags().GetString("password")		
+		querylog.Printf("[login] 1.get the account's name: "+name+"\n")
+		password, _ := cmd.Flags().GetString("password")
+		querylog.Printf("[login] 2.get the account's password: "+password+"\n")
+		//var logtoin ops.Logtoin
+		//logtoin = ops.GetLogtoin()
 		ops.Login(name, password)
+		//querylog.Println(logtoin)
 	},
 }
 

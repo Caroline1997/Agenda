@@ -1,0 +1,89 @@
+2017/10/31 09:09:10 /home/mayling/golang/src/Agenda/cmd/login.go:38: [login] 1.get the account's name: xiaoma
+2017/10/31 09:09:10 /home/mayling/golang/src/Agenda/cmd/login.go:40: [login] 2.get the account's password: myl
+2017/10/31 09:09:10 /home/mayling/golang/src/Agenda/ops/ops.go:191: [login] 4.It is able to log in.
+2017/10/31 09:09:10 /home/mayling/golang/src/Agenda/ops/ops.go:196: [login] 5.You login success!
+2017/10/31 10:01:34 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:35: [createMeeting] 1.Get the meeting's title.
+2017/10/31 10:01:34 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:37: [createMeeting] 2.Get the meeting's participators.
+2017/10/31 10:01:34 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:39: [createMeeting] 3.Get the meeting's startDate.
+2017/10/31 10:01:34 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:41: [createMeeting] 4.Get the meeting's endDate.
+2017/10/31 10:04:50 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:35: [createMeeting] 1.Get the meeting's title.
+2017/10/31 10:04:50 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:37: [createMeeting] 2.Get the meeting's participators.
+2017/10/31 10:04:50 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:39: [createMeeting] 3.Get the meeting's startDate.
+2017/10/31 10:04:50 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:41: [createMeeting] 4.Get the meeting's endDate.
+2017/10/31 10:07:31 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:35: [createMeeting] 1.Get the meeting's title.
+2017/10/31 10:07:31 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:37: [createMeeting] 2.Get the meeting's participators.
+2017/10/31 10:07:31 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:39: [createMeeting] 3.Get the meeting's startDate.
+2017/10/31 10:07:31 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:41: [createMeeting] 4.Get the meeting's endDate.
+2017/10/31 10:09:13 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:35: [createMeeting] 1.Get the meeting's title.
+2017/10/31 10:09:13 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:37: [createMeeting] 2.Get the meeting's participators.
+2017/10/31 10:09:13 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:39: [createMeeting] 3.Get the meeting's startDate.
+2017/10/31 10:09:13 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:41: [createMeeting] 4.Get the meeting's endDate.
+2017/10/31 10:09:13 /home/mayling/golang/src/Agenda/ops/ops.go:444: [createMeeting] 7.Create meeting sucessfully
+2017/10/31 10:09:35 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:35: [createMeeting] 1.Get the meeting's title.
+2017/10/31 10:09:35 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:37: [createMeeting] 2.Get the meeting's participators.
+2017/10/31 10:09:35 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:39: [createMeeting] 3.Get the meeting's startDate.
+2017/10/31 10:09:35 /home/mayling/golang/src/Agenda/cmd/createMeeting.go:41: [createMeeting] 4.Get the meeting's endDate.
+2017/10/31 10:09:35 /home/mayling/golang/src/Agenda/ops/ops.go:444: [createMeeting] 7.Create meeting sucessfully
+2017/10/31 10:12:01 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:36: [queryMeeting] 1.Get the meeting's StartDate.
+2017/10/31 10:12:01 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:38: [queryMeeting] 2.Get the meeting's EndDate.
+2017/10/31 10:17:08 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:36: [queryMeeting] 1.Get the meeting's StartDate.
+2017/10/31 10:17:08 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:38: [queryMeeting] 2.Get the meeting's EndDate.
+2017/10/31 10:17:18 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:36: [queryMeeting] 1.Get the meeting's StartDate.
+2017/10/31 10:17:18 /home/mayling/golang/src/Agenda/cmd/queryMeeting.go:38: [queryMeeting] 2.Get the meeting's EndDate.
+2017/10/31 10:20:06 /home/mayling/golang/src/Agenda/cmd/logout.go:37: [logout] 1.get the account's name: xiaoma
+2017/10/31 10:20:06 /home/mayling/golang/src/Agenda/cmd/logout.go:39: [logout] 2.get the account's password: myl
+2017/10/31 10:20:06 /home/mayling/golang/src/Agenda/ops/ops.go:353: [logout] 9.Clear the data/user_login file!
+2017/10/31 10:20:06 /home/mayling/golang/src/Agenda/ops/ops.go:355: [logout] 10.Logout sucess!
+2017/10/31 10:20:22 /home/mayling/golang/src/Agenda/cmd/query.go:39: [query] 1.get the account's name: xiaoma
+2017/10/31 10:20:22 /home/mayling/golang/src/Agenda/cmd/query.go:42: [query] 1.get the account's password: myl
+2017/10/31 10:20:22 /home/mayling/golang/src/Agenda/cmd/query.go:50: [query] 4.sorry,you should login!
+2017/10/31 10:21:19 /home/mayling/golang/src/Agenda/cmd/query.go:39: [query] 1.get the account's name: xiaomaer
+2017/10/31 10:21:19 /home/mayling/golang/src/Agenda/cmd/query.go:42: [query] 1.get the account's password: myl
+2017/10/31 10:21:19 /home/mayling/golang/src/Agenda/cmd/query.go:50: [query] 4.sorry,you should login!
+2017/10/31 10:21:42 /home/mayling/golang/src/Agenda/cmd/login.go:38: [login] 1.get the account's name: xiaoma
+2017/10/31 10:21:42 /home/mayling/golang/src/Agenda/cmd/login.go:40: [login] 2.get the account's password: myl
+2017/10/31 10:21:42 /home/mayling/golang/src/Agenda/ops/ops.go:237: [login] 4.It is able to log in.
+2017/10/31 10:21:42 /home/mayling/golang/src/Agenda/ops/ops.go:242: [login] 5.You login success!
+2017/10/31 10:21:48 /home/mayling/golang/src/Agenda/cmd/query.go:39: [query] 1.get the account's name: xiaomaer
+2017/10/31 10:21:48 /home/mayling/golang/src/Agenda/cmd/query.go:42: [query] 1.get the account's password: myl
+2017/10/31 10:21:48 /home/mayling/golang/src/Agenda/cmd/query.go:47: [query] 3.get the account's name:Query success! 
+2017/10/31 10:27:10 /home/mayling/golang/src/Agenda/cmd/delete.go:38: [delete] 1.get the account's name: xiaomaer
+2017/10/31 10:27:10 /home/mayling/golang/src/Agenda/cmd/delete.go:40: [delete] 2.get the account's password: myl
+2017/10/31 10:27:10 /home/mayling/golang/src/Agenda/ops/ops.go:612: [delete] 4.You should log in.
+2017/10/31 10:27:10 /home/mayling/golang/src/Agenda/cmd/delete.go:47: [delete] 14.Delete user failed!
+2017/10/31 10:29:29 /home/mayling/golang/src/Agenda/cmd/login.go:38: [login] 1.get the account's name: xiaomaer
+2017/10/31 10:29:29 /home/mayling/golang/src/Agenda/cmd/login.go:40: [login] 2.get the account's password: myl
+2017/10/31 10:29:29 /home/mayling/golang/src/Agenda/ops/ops.go:237: [login] 4.It is able to log in.
+2017/10/31 10:29:29 /home/mayling/golang/src/Agenda/ops/ops.go:246: [login] 6.Your name or password is not correct, please try again
+2017/10/31 10:29:42 /home/mayling/golang/src/Agenda/cmd/login.go:38: [login] 1.get the account's name: xiaoma
+2017/10/31 10:29:42 /home/mayling/golang/src/Agenda/cmd/login.go:40: [login] 2.get the account's password: myl
+2017/10/31 10:29:42 /home/mayling/golang/src/Agenda/ops/ops.go:237: [login] 4.It is able to log in.
+2017/10/31 10:29:42 /home/mayling/golang/src/Agenda/ops/ops.go:242: [login] 5.You login success!
+2017/10/31 10:29:47 /home/mayling/golang/src/Agenda/cmd/delete.go:38: [delete] 1.get the account's name: xiaomaer
+2017/10/31 10:29:47 /home/mayling/golang/src/Agenda/cmd/delete.go:40: [delete] 2.get the account's password: myl
+2017/10/31 10:29:47 /home/mayling/golang/src/Agenda/ops/ops.go:616: [delete] 14.First to log out
+2017/10/31 10:29:47 /home/mayling/golang/src/Agenda/ops/ops.go:327: [logout] 6.Sorry, the name or password is not correct, please try again!
+2017/10/31 10:29:47 /home/mayling/golang/src/Agenda/cmd/delete.go:47: [delete] 14.Delete user failed!
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/cmd/delete.go:38: [delete] 1.get the account's name: xiaoma
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/cmd/delete.go:40: [delete] 2.get the account's password: myl
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/ops/ops.go:616: [delete] 14.First to log out
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/ops/ops.go:353: [logout] 9.Clear the data/user_login file!
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/ops/ops.go:355: [logout] 10.Logout sucess!
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/ops/ops.go:669: [delete] 11.Find the information of user which will be deleted from data/account file.
+2017/10/31 10:32:44 /home/mayling/golang/src/Agenda/ops/ops.go:687: [delete] 13.delete user sucess!
+2017/10/31 10:36:06 /home/mayling/golang/src/Agenda/ops/ops.go:208: [register] 6.Write the username into data/account file.
+2017/10/31 10:36:06 /home/mayling/golang/src/Agenda/ops/ops.go:211: [register] 7.Write the password into data/account file
+2017/10/31 10:36:06 /home/mayling/golang/src/Agenda/ops/ops.go:214: [register] 8.Write the email_address into data/account file
+2017/10/31 10:36:06 /home/mayling/golang/src/Agenda/ops/ops.go:217: [register] 9.Write the phone into data/account file
+2017/10/31 10:36:06 /home/mayling/golang/src/Agenda/ops/ops.go:220: [register] 10.register success!thanks for your cooperation!
+2017/10/31 10:36:29 /home/mayling/golang/src/Agenda/cmd/login.go:38: [login] 1.get the account's name: xiaoma
+2017/10/31 10:36:29 /home/mayling/golang/src/Agenda/cmd/login.go:40: [login] 2.get the account's password: myl
+2017/10/31 10:36:29 /home/mayling/golang/src/Agenda/ops/ops.go:237: [login] 4.It is able to log in.
+2017/10/31 10:36:29 /home/mayling/golang/src/Agenda/ops/ops.go:242: [login] 5.You login success!
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/cmd/delete.go:38: [delete] 1.get the account's name: xiaoma
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/cmd/delete.go:40: [delete] 2.get the account's password: myl
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/ops/ops.go:616: [delete] 14.First to log out
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/ops/ops.go:353: [logout] 9.Clear the data/user_login file!
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/ops/ops.go:355: [logout] 10.Logout sucess!
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/ops/ops.go:669: [delete] 11.Find the information of user which will be deleted from data/account file.
+2017/10/31 10:36:34 /home/mayling/golang/src/Agenda/ops/ops.go:686: [delete] 13.delete user sucess!
